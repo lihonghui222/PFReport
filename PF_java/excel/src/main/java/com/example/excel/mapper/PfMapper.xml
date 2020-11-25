@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mabatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.excel.mapper.PfMapper">
+    <!--添加-->
+    <insert id="insertPf" parameterType="PF">
+        insert into `position`(deptCode,deptName) values (#{deptCode},#{deptName})
+    </insert>
+
+    <!--excel表格添加-->
+    <insert id="insertExcelPf" parameterType="PF">
+        insert into `position`
+        (deptCode,deptName,employer,organNature,positionRecruitment,positionAttribute,positionDistribution,positionSynopsis,positionCode,
+        organLevel,examType,recruitmentNumber,major,education,degree,politicalOutlook,grassrootsWorkYears,grassrootsWorkUndergo,
+        ifInterviewStage,interviewPersonnelRatio,workplace,location,remarks,deptWebsite,consultTel1,consultTel2,consultTel3)
+        values
+        (#{deptCode},#{deptName},#{employer},#{organNature},#{positionRecruitment},#{positionAttribute},#{positionDistribution},
+        #{positionSynopsis},#{positionCode},#{organLevel},#{examType},#{recruitmentNumber},#{major},#{education},#{degree},
+        #{politicalOutlook},#{grassrootsWorkYears},#{grassrootsWorkUndergo},#{ifInterviewStage},#{interviewPersonnelRatio},#{workplace},
+        #{location},#{remarks},#{deptWebsite},#{consultTel1},#{consultTel2},#{consultTel3})
+    </insert>
+
+    <select id="getExcelPf" parameterType="java.util.HashMap" resultType="PF">
+        select * from `position`
+        where 1=1
+        <if test="major != null and major !=''">
+            and major like concat('%',#{major},'%')
+        </if>
+        <if test="education != null and education !=''">
+            and education like concat('%',#{education},'%')
+        </if>
+        <if test="grassrootsWorkYears != null and grassrootsWorkYears !=''">
+            and grassrootsWorkYears like concat('%',#{grassrootsWorkYears},'%')
+        </if>
+        <if test="grassrootsWorkUndergo != null and grassrootsWorkUndergo !=''">
+            and grassrootsWorkUndergo like concat('%',#{grassrootsWorkUndergo},'%')
+        </if>
+        <if test="workplace != null and workplace !=''">
+            and workplace like concat('%',#{workplace},'%')
+        </if>
+        <if test="remarks != null and remarks !=''">
+            and remarks like concat('%',#{remarks},'%')
+        </if>
+    </select>
+
+    <delete id="deleteAllExcelPf">
+        DELETE FROM `position` WHERE 1=1
+    </delete>
+</mapper>
