@@ -1,17 +1,12 @@
-package com.example.excel.controller;
+package com.example.excel.test;
 
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.OapiDepartmentListRequest;
 import com.dingtalk.api.request.OapiGettokenRequest;
-import com.dingtalk.api.request.OapiMessageSendToConversationRequest;
-import com.dingtalk.api.request.OapiRobotSendRequest;
 import com.dingtalk.api.response.OapiDepartmentListResponse;
 import com.dingtalk.api.response.OapiGettokenResponse;
-import com.dingtalk.api.response.OapiMessageSendToConversationResponse;
 import com.taobao.api.ApiException;
-
-import java.util.List;
 
 public class Test5 {
     public static void main(String[] args) {
@@ -43,7 +38,7 @@ public class Test5 {
         }
 
         try {
-            DingTalkClient client4 = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/crm/objectdata/contact/query");
+            DingTalkClient client4 = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/crm/objectdata/contact/list");
             OapiDepartmentListRequest req4 = new OapiDepartmentListRequest();
             req4.setHttpMethod("GET");
             OapiDepartmentListResponse rsp4 = client4.execute(req4, accessToken);

@@ -1,4 +1,4 @@
-package com.example.excel.controller;
+package com.example.excel.test;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
@@ -7,8 +7,8 @@ import org.dom4j.DocumentHelper;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 
 public class Test4 {
     public static void main(String[] args) {
@@ -47,7 +47,7 @@ public class Test4 {
         ByteArrayOutputStream baos[] = new ByteArrayOutputStream[list.size()];
         ByteArrayOutputStream out;
         //创建并打开一个pdf对象
-        com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
+        Document doc = new Document();
         try {
             out = new ByteArrayOutputStream();
             PdfCopy pdfCopy = new PdfCopy(doc,out);
@@ -114,7 +114,7 @@ public class Test4 {
             return out.toByteArray() != null ? out.toByteArray() : null;
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (com.itextpdf.text.DocumentException e) {
+        } catch (DocumentException e) {
             e.printStackTrace();
         }
         return null;
