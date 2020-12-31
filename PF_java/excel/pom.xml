@@ -108,13 +108,6 @@
             <version>5.2.0</version>
         </dependency>
 
-        <!--excel转pdf-->
-        <dependency>
-            <groupId> e-iceblue </groupId>
-            <artifactId>spire.xls.free</artifactId>
-            <version>3.9.1</version>
-        </dependency>
-
         <!--xml解析-->
         <dependency>
             <groupId>org.dom4j</groupId>
@@ -129,7 +122,11 @@
             <version>ding-open-mc-SNAPSHOT</version>
         </dependency>
 
-
+        <!--<dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>2.2.6</version>
+        </dependency>-->
     </dependencies>
 
     <build>
@@ -137,6 +134,20 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!--解决excel生成编译文件时损坏-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <!--配置不需要压缩的文件-->
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>xlsx</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>xls</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                </configuration>
             </plugin>
         </plugins>
 
@@ -155,6 +166,22 @@ org.apache.ibatis.binding.BindingException: Invalid bound statement (not found):
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>false</filtering>
+            </resource>
+
+            <!--编译xlsx文件-->
+            <resource>
+                <directory>src/main</directory>
+                <includes>
+                    <include>**/*.xlsx</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+            <directory>src/main</directory>
+            <includes>
+                <include>**/*.xls</include>
+            </includes>
+            <filtering>true</filtering>
             </resource>
         </resources>
     </build>
