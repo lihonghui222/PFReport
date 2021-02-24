@@ -3,6 +3,7 @@ package com.example.excel.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.example.excel.model.PF;
 import com.example.excel.services.PfService;
+import com.example.excel.util.Util;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -29,6 +30,7 @@ public class UploadController {
         //文件处理存储入库
         readExcel(file.getInputStream());
         //String fileName = file.getOriginalFilename();// 获取上传的文件名称
+        insertNum = 0;
 
         JSONObject result = new JSONObject();
         result.put("returnMessage", "上传成功！");
@@ -95,7 +97,7 @@ public class UploadController {
     public void insertExcelPf(int cellNum,String cellValue,boolean lastData){
         switch (cellNum) {
             case 0 ://部门代码
-                if(!StringUtils.isEmpty(pf)){
+                if(!Util.isNullOrEmpty(pf) && !Util.isNullOrEmpty(pf.getDeptCode())){
                     //此处执行插入sql
                     int a = pfService.insertExcelPf(pf);
                     insertNum = insertNum + a;

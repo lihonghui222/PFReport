@@ -30,6 +30,8 @@ public class PF {
     private String consultTel2;//咨询电话2
     private String consultTel3;//咨询电话3
 
+    public PF(){}
+
     public Integer getId() {
         return id;
     }
