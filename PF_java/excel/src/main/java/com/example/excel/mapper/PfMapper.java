@@ -17,5 +17,7 @@ public interface PfMapper {
     List getExcelPf(Map map);
 
     int deleteAllExcelPf();
+
+    int getExcelPfNumber(Map map);
 }
 

@@ -5,6 +5,8 @@ import com.example.excel.model.PF;
 import com.example.excel.services.PfService;
 import com.example.excel.util.Util;
 import org.apache.poi.ss.usermodel.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,7 @@ import java.io.InputStream;
 @RestController
 @RequestMapping("/excel")
 public class UploadController {
+    protected static final Logger logger = LoggerFactory.getLogger(UploadController.class);
     private PF pf;
     private int insertNum = 0;//插入数据条数
     @Autowired
@@ -27,6 +30,7 @@ public class UploadController {
     public JSONObject fileUploads(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IOException {
         //插入数据前先删除数据
         int deleteNum = pfService.deleteAllExcelPf();
+        logger.info("删除数据成功！");
         //文件处理存储入库
         readExcel(file.getInputStream());
         //String fileName = file.getOriginalFilename();// 获取上传的文件名称
@@ -53,14 +57,14 @@ public class UploadController {
                 Sheet sh = wb.getSheetAt(i); // 通过索引获取表单
                 // 4. 获取最大行号: 索引(0开始)
                 int lastRowNum = sh.getLastRowNum();
-                //System.out.println("最大行数："+lastRowNum);
+                //logger.info("最大行数："+lastRowNum);
                 // 5. 循环所有的行（除去前两行标题）
                 for(int j=2;j<=lastRowNum;j++) {
                     // 5.1 获取当前行
                     Row row = sh.getRow(j);
                     // 5.2  获取当前行最大列号: 长度
                     int lastCellNum = row.getLastCellNum();
-                    //System.out.println("最大列号："+lastCellNum);
+                    //logger.info("最大列号："+lastCellNum);
                     // 6. 遍历每行所有的单元格
                     for(int z=0;z<lastCellNum;z++) {
                         // 6.1 获取cell(单元格)
@@ -69,7 +73,7 @@ public class UploadController {
                         cell.setCellType(CellType.STRING);
                         // 6.3 获取单元格的内容
                         String cellValue = cell.getStringCellValue();
-                        //System.out.println("第"+(i+1)+"页"+"第"+(j+1)+"行"+"第"+(z+1)+"列的单元格内容是："+cellValue);
+                        //logger.info("第"+(i+1)+"页"+"第"+(j+1)+"行"+"第"+(z+1)+"列的单元格内容是："+cellValue);
                         insertExcelPf(z,cellValue.replaceAll(" ",""),(i==sheetNumber-1 && j==lastRowNum && z==lastCellNum-1));
                     }
                 }
@@ -78,7 +82,7 @@ public class UploadController {
             e.printStackTrace();
         }finally {
             try {
-                System.out.println("成功插入数据条数为："+insertNum);
+                logger.info("成功插入数据条数为："+insertNum);
                 // 7. 关闭文件流
                 inputs.close();
             }catch(Exception e) {

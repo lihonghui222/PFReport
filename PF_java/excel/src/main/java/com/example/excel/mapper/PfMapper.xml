@@ -22,8 +22,42 @@
     <select id="getExcelPf" parameterType="java.util.HashMap" resultType="PF">
         select * from `position`
         where 1=1
-        <if test="major != null and major !=''">
-            and major like concat('%',#{major},'%')
+        <if test="majors != null and majors.size() > 0">
+            and
+            <foreach collection="majors" item="major" open="(" separator="or" close=")">
+                major like concat('%',#{major},'%')
+            </foreach>
+        </if>
+        <if test="education != null and education !=''">
+            and education like concat('%',#{education},'%')
+        </if>
+        <if test="grassrootsWorkYears != null and grassrootsWorkYears !=''">
+            and grassrootsWorkYears like concat('%',#{grassrootsWorkYears},'%')
+        </if>
+        <if test="grassrootsWorkUndergo != null and grassrootsWorkUndergo !=''">
+            and grassrootsWorkUndergo like concat('%',#{grassrootsWorkUndergo},'%')
+        </if>
+        <if test="workplace != null and workplace !=''">
+            and workplace like concat('%',#{workplace},'%')
+        </if>
+        <if test="remarks != null and remarks !=''">
+            and remarks like concat('%',#{remarks},'%')
+        </if>
+        limit #{numberIndex},#{nowPageSize}
+    </select>
+
+    <delete id="deleteAllExcelPf">
+        DELETE FROM `position` WHERE 1=1
+    </delete>
+
+    <select id="getExcelPfNumber" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        select count(*) from `position`
+        where 1=1
+        <if test="majors != null and majors.size() > 0">
+            and
+            <foreach collection="majors" item="major" open="(" separator="or" close=")">
+                major like concat('%',#{major},'%')
+            </foreach>
         </if>
         <if test="education != null and education !=''">
             and education like concat('%',#{education},'%')
@@ -41,8 +75,4 @@
             and remarks like concat('%',#{remarks},'%')
         </if>
     </select>
-
-    <delete id="deleteAllExcelPf">
-        DELETE FROM `position` WHERE 1=1
-    </delete>
 </mapper>

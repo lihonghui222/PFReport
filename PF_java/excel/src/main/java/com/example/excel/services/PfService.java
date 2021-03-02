@@ -13,4 +13,6 @@ public interface PfService {
     List getExcelPf(Map map);
 
     int deleteAllExcelPf();
+
+    int getExcelPfNumber(Map map);
 }
