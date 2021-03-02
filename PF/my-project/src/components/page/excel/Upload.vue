@@ -32,7 +32,7 @@
                 if(file.response != null){
                     this.$message.success(file.response.returnMessage);
                 }else{
-                    this.$message.success("上传失败！");
+                    this.$message.error("上传失败！");
                 }
             },
             handleFileNumberLimit (){
