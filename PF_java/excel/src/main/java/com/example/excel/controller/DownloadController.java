@@ -7,6 +7,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +19,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/excel")
 public class DownloadController {
-    private final static String excelmodel = "D:/wenjian/pf1.xls";
+    //private final static String excelmodel = "D:/wenjian/pf1.xls";
 
     @Autowired
     private PfService pfService;
@@ -26,7 +27,7 @@ public class DownloadController {
     @RequestMapping(value = "/download", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public byte[] showUser(@RequestBody JSONObject jsonParam, HttpServletResponse response){
         Map map = (Map)jsonParam.get("pf");
-        List list = pfService.getExcelPf(map);
+        List list = pfService.getExcelPfAll(map);
         return excelExport(list);
     }
 
@@ -36,9 +37,10 @@ public class DownloadController {
      * @return
      */
     public static byte[] excelExport(List list) {
+        //String excelmodel = new ClassPathResource("model/pf.xls").getInputStream();
         byte[] b = null;
         try{
-            HSSFWorkbook wb = new HSSFWorkbook(new FileInputStream(excelmodel));
+            HSSFWorkbook wb = new HSSFWorkbook(new ClassPathResource("model/pf.xls").getInputStream());
             // 根据页面index
             HSSFSheet sheet = wb.getSheet("Sheet1");
             for (int i = 0; i < list.size(); i++) {

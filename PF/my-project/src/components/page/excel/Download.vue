@@ -28,7 +28,7 @@
                         <el-button type="primary" @click="onSubmit">查询</el-button>
                         <el-button @click="resetForm('formDate')">重置</el-button>
                     </el-form-item>
-                    <el-button type="primary">下载<i class="el-icon-download el-icon--right" @click="onDownload"></i></el-button>
+                    <el-button type="primary" @click="onDownload">下载<i class="el-icon-download el-icon--right"></i></el-button>
                 </el-row>
             </el-form>
 
@@ -234,6 +234,8 @@
             },
             onSubmit() {
                 var _this = this;
+                _this.currentPage=1
+                _this.formDate.numberIndex = 0
                 _this.$axios({
                     method:'post',
                     url:'/api/excel/query',
@@ -263,14 +265,15 @@
                     },
                     responseType:'blob'
                 }).then((response) =>{          //这里使用了ES6的语法
-                    //console.log(response)       //请求成功返回的数据
+                    console.log(response)       //请求成功返回的数据
+                    console.log(response.data)
                     // 利用a标签自定义下载文件名
                     const link = document.createElement('a')
                     // 创建Blob对象，设置文件类型
                     let blob = new Blob([response.data], {type: "application/vnd.ms-excel"})
                     let objectUrl = URL.createObjectURL(blob) // 创建URL
                     link.href = objectUrl
-                    link.download = 'xxx' // 自定义文件名
+                    link.download = '公务员职位表' // 自定义文件名
                     link.click() // 下载文件
                     URL.revokeObjectURL(objectUrl); // 释放内存
                 }).catch((error) =>{

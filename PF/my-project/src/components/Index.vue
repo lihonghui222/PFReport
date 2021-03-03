@@ -4,10 +4,10 @@
             <el-submenu index="1">
                 <template slot="title">我的工作台</template>
                 <router-link :to="{name:'Download'}">
-                    <el-menu-item index="1-1">EXCEL导入</el-menu-item>
+                    <el-menu-item index="1-1">EXCEL导出</el-menu-item>
                 </router-link>
                 <router-link :to="{name:'Upload'}">
-                    <el-menu-item index="1-2">EXCEL导出</el-menu-item>
+                    <el-menu-item index="1-2">EXCEL导入</el-menu-item>
                 </router-link>
             </el-submenu>
         </el-menu>

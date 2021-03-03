@@ -30,6 +30,11 @@ public class PfServiceImpl implements PfService {
     }
 
     @Override
+    public List getExcelPfAll(Map map) {
+        return pfMapper.getExcelPfAll(map);
+    }
+
+    @Override
     public int deleteAllExcelPf() {
         return pfMapper.deleteAllExcelPf();
     }
