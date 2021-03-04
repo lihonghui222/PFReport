@@ -25,7 +25,7 @@
                 </el-form-item>
                 <el-row>
                     <el-form-item>
-                        <el-button type="primary" @click="onSubmit">查询</el-button>
+                        <el-button type="primary" @click="onQuery">查询</el-button>
                         <el-button @click="resetForm('formDate')">重置</el-button>
                     </el-form-item>
                     <el-button type="primary" @click="onDownload">下载<i class="el-icon-download el-icon--right"></i></el-button>
@@ -220,6 +220,7 @@
             }
         },
         methods: {
+            //修改每页显示条数时触发事件
             handleSizeChange(val) {
                 this.PageSize=val// 改变每页显示的条数
                 this.currentPage=1// 注意：在改变每页显示的条数时，要将页码显示到第一页
@@ -227,15 +228,21 @@
                 this.formDate.nowPageSize = val
                 this.onSubmit()
             },
+            //变更页码时触发事件
             handleCurrentChange(val) {
                 this.currentPage=val// 改变默认的页数
                 this.formDate.numberIndex = this.formDate.nowPageSize * (val-1)
                 this.onSubmit()
             },
+            //点击查询时触发事件
+            onQuery(){
+                this.currentPage=1
+                this.formDate.numberIndex = 0
+                this.onSubmit()
+            },
+            //数据查询事件
             onSubmit() {
                 var _this = this;
-                _this.currentPage=1
-                _this.formDate.numberIndex = 0
                 _this.$axios({
                     method:'post',
                     url:'/api/excel/query',
@@ -253,8 +260,10 @@
                 })
                 //console.log(_this.formDate);
             },
+            //重置
             resetForm(formName) {
                 this.$refs[formName].resetFields();
+                this.$refs.majors.query = ''
             },
             onDownload(){
                 this.$axios({
