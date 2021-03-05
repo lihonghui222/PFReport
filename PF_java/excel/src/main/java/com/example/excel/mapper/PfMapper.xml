@@ -28,14 +28,23 @@
                 major like concat('%',#{major},'%')
             </foreach>
         </if>
-        <if test="education != null and education !=''">
-            and education like concat('%',#{education},'%')
+        <if test="educations != null and educations.size() > 0">
+            and
+            <foreach collection="educations" item="education" open="(" separator="or" close=")">
+                education like concat('%',#{education},'%')
+            </foreach>
         </if>
-        <if test="grassrootsWorkYears != null and grassrootsWorkYears !=''">
-            and grassrootsWorkYears like concat('%',#{grassrootsWorkYears},'%')
+        <if test="grassrootsWorkYearss != null and grassrootsWorkYearss.size() > 0">
+            and
+            <foreach collection="grassrootsWorkYearss" item="grassrootsWorkYears" open="(" separator="or" close=")">
+                grassrootsWorkYears like concat('%',#{grassrootsWorkYears},'%')
+            </foreach>
         </if>
-        <if test="grassrootsWorkUndergo != null and grassrootsWorkUndergo !=''">
-            and grassrootsWorkUndergo like concat('%',#{grassrootsWorkUndergo},'%')
+        <if test="grassrootsWorkUndergos != null and grassrootsWorkUndergos.size() > 0">
+            and
+            <foreach collection="grassrootsWorkUndergos" item="grassrootsWorkUndergo" open="(" separator="or" close=")">
+                grassrootsWorkUndergo like concat('%',#{grassrootsWorkUndergo},'%')
+            </foreach>
         </if>
         <if test="workplace != null and workplace !=''">
             and workplace like concat('%',#{workplace},'%')
@@ -55,14 +64,23 @@
                 major like concat('%',#{major},'%')
             </foreach>
         </if>
-        <if test="education != null and education !=''">
-            and education like concat('%',#{education},'%')
+        <if test="educations != null and educations.size() > 0">
+            and
+            <foreach collection="educations" item="education" open="(" separator="or" close=")">
+                education like concat('%',#{education},'%')
+            </foreach>
         </if>
-        <if test="grassrootsWorkYears != null and grassrootsWorkYears !=''">
-            and grassrootsWorkYears like concat('%',#{grassrootsWorkYears},'%')
+        <if test="grassrootsWorkYearss != null and grassrootsWorkYearss.size() > 0">
+            and
+            <foreach collection="grassrootsWorkYearss" item="grassrootsWorkYears" open="(" separator="or" close=")">
+                grassrootsWorkYears like concat('%',#{grassrootsWorkYears},'%')
+            </foreach>
         </if>
-        <if test="grassrootsWorkUndergo != null and grassrootsWorkUndergo !=''">
-            and grassrootsWorkUndergo like concat('%',#{grassrootsWorkUndergo},'%')
+        <if test="grassrootsWorkUndergos != null and grassrootsWorkUndergos.size() > 0">
+            and
+            <foreach collection="grassrootsWorkUndergos" item="grassrootsWorkUndergo" open="(" separator="or" close=")">
+                grassrootsWorkUndergo like concat('%',#{grassrootsWorkUndergo},'%')
+            </foreach>
         </if>
         <if test="workplace != null and workplace !=''">
             and workplace like concat('%',#{workplace},'%')
@@ -85,14 +103,23 @@
                 major like concat('%',#{major},'%')
             </foreach>
         </if>
-        <if test="education != null and education !=''">
-            and education like concat('%',#{education},'%')
+        <if test="educations != null and educations.size() > 0">
+            and
+            <foreach collection="educations" item="education" open="(" separator="or" close=")">
+                education like concat('%',#{education},'%')
+            </foreach>
         </if>
-        <if test="grassrootsWorkYears != null and grassrootsWorkYears !=''">
-            and grassrootsWorkYears like concat('%',#{grassrootsWorkYears},'%')
+        <if test="grassrootsWorkYearss != null and grassrootsWorkYearss.size() > 0">
+            and
+            <foreach collection="grassrootsWorkYearss" item="grassrootsWorkYears" open="(" separator="or" close=")">
+                grassrootsWorkYears like concat('%',#{grassrootsWorkYears},'%')
+            </foreach>
         </if>
-        <if test="grassrootsWorkUndergo != null and grassrootsWorkUndergo !=''">
-            and grassrootsWorkUndergo like concat('%',#{grassrootsWorkUndergo},'%')
+        <if test="grassrootsWorkUndergos != null and grassrootsWorkUndergos.size() > 0">
+            and
+            <foreach collection="grassrootsWorkUndergos" item="grassrootsWorkUndergo" open="(" separator="or" close=")">
+                grassrootsWorkUndergo like concat('%',#{grassrootsWorkUndergo},'%')
+            </foreach>
         </if>
         <if test="workplace != null and workplace !=''">
             and workplace like concat('%',#{workplace},'%')
