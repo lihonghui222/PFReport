@@ -107,7 +107,8 @@
                     educations:[],
                     grassrootsWorkYearss:[],
                     grassrootsWorkUndergos:[],
-                    workplace:'',
+                    workplace:[],
+                    workplaces:[],
                     remarks:'',
                     numberIndex: 0,//分页查询起始下标
                     nowPageSize:10//分页查询每页数据条数
@@ -277,7 +278,7 @@
                     value: '无限制',
                     label: '无限制'
                 }],
-                props: { multiple: true },
+                props: { multiple: true},
                 options: [{
                     value: '上海市',
                     label: '上海市',
@@ -850,22 +851,728 @@
                             { value: '绿园区', label: '绿园区' }
                         ]
                     } ]
-                }, {
-                    value: 17,
-                    label: '西北',
+                },{
+                    value: '四川省',
+                    label: '四川省',
                     children: [{
-                        value: 18,
-                        label: '陕西',
+                        value: '乐山市',
+                        label: '乐山市',
                         children: [
-                            { value: 19, label: '西安' },
-                            { value: 20, label: '延安' }
+                            { value: '峨边彝族自治县', label: '峨边彝族自治县' },
+                            { value: '沐川县', label: '沐川县' },
+                            { value: '金口河区', label: '金口河区' },
+                            { value: '马边彝族自治县', label: '马边彝族自治县' }
+                        ]
+                    },{
+                        value: '内江市',
+                        label: '内江市',
+                        children: [
+                            { value: '东兴区', label: '东兴区' },
+                            { value: '威远县', label: '威远县' },
+                            { value: '市中区', label: '市中区' },
+                            { value: '资中县', label: '资中县' },
+                            { value: '隆昌县', label: '隆昌县' }
+                        ]
+                    },{
+                        value: '凉山彝族自治州',
+                        label: '凉山彝族自治州',
+                        children: [
+                            { value: '会东县', label: '会东县' },
+                            { value: '会理县', label: '会理县' },
+                            { value: '冕宁县', label: '冕宁县' },
+                            { value: '喜德县', label: '喜德县' },
+                            { value: '宁南县', label: '宁南县' },
+                            { value: '布拖县', label: '布拖县' },
+                            { value: '德昌县', label: '德昌县' },
+                            { value: '昭觉县', label: '昭觉县' },
+                            { value: '普格县', label: '普格县' },
+                            { value: '木里藏族自治县', label: '木里藏族自治县' },
+                            { value: '甘洛县', label: '甘洛县' },
+                            { value: '盐源县', label: '盐源县' },
+                            { value: '美姑县', label: '美姑县' },
+                            { value: '越西县', label: '越西县' },
+                            { value: '金阳县', label: '金阳县' },
+                            { value: '雷波县', label: '雷波县' }
+                        ]
+                    },{
+                        value: '南充市',
+                        label: '南充市',
+                        children: [
+                            { value: '仪陇县', label: '仪陇县' },
+                            { value: '南部县', label: '南部县' },
+                            { value: '嘉陵区', label: '嘉陵区' },
+                            { value: '营山县', label: '营山县' },
+                            { value: '蓬安县', label: '蓬安县' },
+                            { value: '西充县', label: '西充县' },
+                            { value: '阆中市', label: '阆中市' },
+                            { value: '顺庆区', label: '顺庆区' },
+                            { value: '高坪区', label: '高坪区' }
+                        ]
+                    },{
+                        value: '宜宾市',
+                        label: '宜宾市',
+                        children: [
+                            { value: '兴文县', label: '兴文县' },
+                            { value: '南溪区', label: '南溪区' },
+                            { value: '屏山县', label: '屏山县' },
+                            { value: '江安县', label: '江安县' },
+                            { value: '珙县', label: '珙县' },
+                            { value: '筠连县', label: '筠连县' },
+                            { value: '翠屏区', label: '翠屏区' },
+                            { value: '长宁县', label: '长宁县' },
+                            { value: '高县', label: '高县' }
+                        ]
+                    },{
+                        value: '巴中市',
+                        label: '巴中市',
+                        children: [
+                            { value: '南江县', label: '南江县' },
+                            { value: '巴州区', label: '巴州区' },
+                            { value: '平昌县', label: '平昌县' },
+                            { value: '恩阳区', label: '恩阳区' },
+                            { value: '通江县', label: '通江县' }
+                        ]
+                    },{
+                        value: '广元市',
+                        label: '广元市',
+                        children: [
+                            { value: '利州区', label: '利州区' },
+                            { value: '剑阁县', label: '剑阁县' },
+                            { value: '旺苍县', label: '旺苍县' },
+                            { value: '昭化区', label: '昭化区' },
+                            { value: '朝天区', label: '朝天区' },
+                            { value: '苍溪县', label: '苍溪县' },
+                            { value: '青川县', label: '青川县' }
+                        ]
+                    },{
+                        value: '广安市',
+                        label: '广安市',
+                        children: [
+                            { value: '前锋区', label: '前锋区' },
+                            { value: '华蓥市', label: '华蓥市' },
+                            { value: '岳池县', label: '岳池县' },
+                            { value: '广安区', label: '广安区' },
+                            { value: '武胜县', label: '武胜县' },
+                            { value: '邻水县', label: '邻水县' }
+                        ]
+                    },{
+                        value: '德阳市',
+                        label: '德阳市',
+                        children: [
+                            { value: '中江县', label: '中江县' },
+                            { value: '什邡市', label: '什邡市' },
+                            { value: '广汉市', label: '广汉市' },
+                            { value: '旌阳区', label: '旌阳区' },
+                            { value: '绵竹市', label: '绵竹市' },
+                            { value: '罗江县', label: '罗江县' }
+                        ]
+                    },{
+                        value: '成都市',
+                        label: '成都市',
+                        children: [
+                            { value: '双流区', label: '双流区' },
+                            { value: '大邑县', label: '大邑县' },
+                            { value: '崇州市', label: '崇州市' },
+                            { value: '彭州市', label: '彭州市' },
+                            { value: '成华区', label: '成华区' },
+                            { value: '新津县', label: '新津县' },
+                            { value: '新都区', label: '新都区' },
+                            { value: '武侯区', label: '武侯区' },
+                            { value: '温江区', label: '温江区' },
+                            { value: '简阳市', label: '简阳市' },
+                            { value: '蒲江县', label: '蒲江县' },
+                            { value: '邛崃市', label: '邛崃市' },
+                            { value: '郫都区', label: '郫都区' },
+                            { value: '都江堰市', label: '都江堰市' },
+                            { value: '金堂县', label: '金堂县' },
+                            { value: '金牛区', label: '金牛区' },
+                            { value: '锦江区', label: '锦江区' },
+                            { value: '青白江区', label: '青白江区' },
+                            { value: '青羊区', label: '青羊区' },
+                            { value: '龙泉驿区', label: '龙泉驿区' }
+                        ]
+                    },{
+                        value: '攀枝花市',
+                        label: '攀枝花市',
+                        children: [
+                            { value: '东区', label: '东区' },
+                            { value: '仁和区', label: '仁和区' },
+                            { value: '盐边县', label: '盐边县' },
+                            { value: '米易县', label: '米易县' },
+                            { value: '西区', label: '西区' }
+                        ]
+                    },{
+                        value: '泸州市',
+                        label: '泸州市',
+                        children: [
+                            { value: '叙永县', label: '叙永县' },
+                            { value: '古蔺县', label: '古蔺县' },
+                            { value: '合江县', label: '合江县' },
+                            { value: '江阳区', label: '江阳区' },
+                            { value: '泸县', label: '泸县' },
+                            { value: '纳溪区', label: '纳溪区' },
+                            { value: '龙马潭区', label: '龙马潭区' }
+                        ]
+                    },{
+                        value: '甘孜藏族自治州',
+                        label: '甘孜藏族自治州',
+                        children: [
+                            { value: '九龙县', label: '九龙县' },
+                            { value: '乡城县', label: '乡城县' },
+                            { value: '巴塘县', label: '巴塘县' },
+                            { value: '得荣县', label: '得荣县' },
+                            { value: '德格县', label: '德格县' },
+                            { value: '新龙县', label: '新龙县' },
+                            { value: '炉霍县', label: '炉霍县' },
+                            { value: '理塘县', label: '理塘县' },
+                            { value: '甘孜县', label: '甘孜县' },
+                            { value: '白玉县', label: '白玉县' },
+                            { value: '石渠县', label: '石渠县' },
+                            { value: '稻城县', label: '稻城县' },
+                            { value: '色达县', label: '色达县' },
+                            { value: '道孚县', label: '道孚县' },
+                            { value: '雅江县', label: '雅江县' }
+                        ]
+                    },{
+                        value: '眉山市',
+                        label: '眉山市',
+                        children: [
+                            { value: '东坡区', label: '东坡区' },
+                            { value: '丹棱县', label: '丹棱县' },
+                            { value: '仁寿县', label: '仁寿县' },
+                            { value: '彭山区', label: '彭山区' },
+                            { value: '洪雅县', label: '洪雅县' },
+                            { value: '青神县', label: '青神县' }
+                        ]
+                    },{
+                        value: '绵阳市',
+                        label: '绵阳市',
+                        children: [
+                            { value: '三台县', label: '三台县' },
+                            { value: '北川羌族自治县', label: '北川羌族自治县' },
+                            { value: '安州区', label: '安州区' },
+                            { value: '平武县', label: '平武县' },
+                            { value: '梓潼县', label: '梓潼县' },
+                            { value: '江油市', label: '江油市' },
+                            { value: '涪城区', label: '涪城区' },
+                            { value: '游仙区', label: '游仙区' },
+                            { value: '盐亭县', label: '盐亭县' }
+                        ]
+                    },{
+                        value: '自贡市',
+                        label: '自贡市',
+                        children: [
+                            { value: '大安区', label: '大安区' },
+                            { value: '富顺县', label: '富顺县' },
+                            { value: '沿滩区', label: '沿滩区' },
+                            { value: '自流井区', label: '自流井区' },
+                            { value: '荣县', label: '荣县' },
+                            { value: '贡井区', label: '贡井区' }
+                        ]
+                    },{
+                        value: '资阳市',
+                        label: '资阳市',
+                        children: [
+                            { value: '乐至县', label: '乐至县' },
+                            { value: '安岳县', label: '安岳县' },
+                            { value: '雁江区', label: '雁江区' }
+                        ]
+                    },{
+                        value: '达州市',
+                        label: '达州市',
+                        children: [
+                            { value: '万源市', label: '万源市' },
+                            { value: '大竹县', label: '大竹县' },
+                            { value: '宣汉县', label: '宣汉县' },
+                            { value: '开江县', label: '开江县' },
+                            { value: '渠县', label: '渠县' },
+                            { value: '达川区', label: '达川区' },
+                            { value: '通川区', label: '通川区' }
+                        ]
+                    },{
+                        value: '遂宁市',
+                        label: '遂宁市',
+                        children: [
+                            { value: '大英县', label: '大英县' },
+                            { value: '安居区', label: '安居区' },
+                            { value: '射洪县', label: '射洪县' },
+                            { value: '船山区', label: '船山区' },
+                            { value: '蓬溪县', label: '蓬溪县' }
+                        ]
+                    },{
+                        value: '阿坝藏族羌族自治州',
+                        label: '阿坝藏族羌族自治州',
+                        children: [
+                            { value: '九寨沟县', label: '九寨沟县' },
+                            { value: '壤塘县', label: '壤塘县' },
+                            { value: '小金县', label: '小金县' },
+                            { value: '松潘县', label: '松潘县' },
+                            { value: '汶川县', label: '汶川县' },
+                            { value: '理县', label: '理县' },
+                            { value: '红原县', label: '红原县' },
+                            { value: '若尔盖县', label: '若尔盖县' },
+                            { value: '茂县', label: '茂县' },
+                            { value: '金川县', label: '金川县' },
+                            { value: '阿坝县', label: '阿坝县' },
+                            { value: '马尔康市', label: '马尔康市' },
+                            { value: '黑水县', label: '黑水县' }
+                        ]
+                    },{
+                        value: '雅安市',
+                        label: '雅安市',
+                        children: [
+                            { value: '名山区', label: '名山区' },
+                            { value: '天全县', label: '天全县' },
+                            { value: '宝兴县', label: '宝兴县' },
+                            { value: '汉源县', label: '汉源县' },
+                            { value: '石棉县', label: '石棉县' },
+                            { value: '芦山县', label: '芦山县' },
+                            { value: '荥经县', label: '荥经县' },
+                        ]
+                    } ]
+                },{
+                    value: '天津市',
+                    label: '天津市',
+                    children: [{
+                        value: '东丽区',
+                        label: '东丽区',
+                    },{
+                        value: '北辰区',
+                        label: '北辰区',
+                    },{
+                        value: '南开区',
+                        label: '南开区',
+                    },{
+                        value: '和平区',
+                        label: '和平区',
+                    },{
+                        value: '宁河区',
+                        label: '宁河区',
+                    },{
+                        value: '宝坻区',
+                        label: '宝坻区',
+                    },{
+                        value: '武清区',
+                        label: '武清区',
+                    },{
+                        value: '河东区',
+                        label: '河东区',
+                    },{
+                        value: '河北区',
+                        label: '河北区',
+                    },{
+                        value: '河西区',
+                        label: '河西区',
+                    },{
+                        value: '津南区',
+                        label: '津南区',
+                    },{
+                        value: '滨海新区',
+                        label: '滨海新区',
+                    },{
+                        value: '红桥区',
+                        label: '红桥区',
+                    },{
+                        value: '蓟州区',
+                        label: '蓟州区',
+                    },{
+                        value: '西青区',
+                        label: '西青区',
+                    },{
+                        value: '静海区',
+                        label: '静海区',
+                    }]
+                },{
+                    value: '宁夏回族自治区',
+                    label: '宁夏回族自治区',
+                    children: [{
+                        value: '中卫市',
+                        label: '中卫市',
+                        children: [
+                            { value: '中宁县', label: '中宁县' },
+                            { value: '沙坡头区', label: '沙坡头区' }
+                        ]
+                    },{
+                        value: '吴忠市',
+                        label: '吴忠市',
+                        children: [
+                            { value: '利通区', label: '利通区' },
+                            { value: '青铜峡市', label: '青铜峡市' }
+                        ]
+                    },{
+                        value: '固原市',
+                        label: '固原市',
+                        children: [
+                            { value: '原州区', label: '原州区' }
+                        ]
+                    },{
+                        value: '石嘴山市',
+                        label: '石嘴山市',
+                        children: [
+                            { value: '大武口区', label: '大武口区' },
+                            { value: '平罗县', label: '平罗县' },
+                            { value: '惠农区', label: '惠农区' }
+                        ]
+                    },{
+                        value: '银川市',
+                        label: '银川市',
+                        children: [
+                            { value: '兴庆区', label: '兴庆区' },
+                            { value: '永宁县', label: '永宁县' },
+                            { value: '灵武市', label: '灵武市' },
+                            { value: '西夏区', label: '西夏区' },
+                            { value: '贺兰县', label: '贺兰县' },
+                            { value: '金凤区', label: '金凤区' }
+                        ]
+                    } ]
+                },{
+                    value: '安徽省',
+                    label: '安徽省',
+                    children: [{
+                        value: '亳州市',
+                        label: '亳州市',
+                        children: [
+                            { value: '利辛县', label: '利辛县' },
+                            { value: '涡阳县', label: '涡阳县' },
+                            { value: '蒙城县', label: '蒙城县' },
+                            { value: '谯城区', label: '谯城区' }
+                        ]
+                    },{
+                        value: '六安市',
+                        label: '六安市',
+                        children: [
+                            { value: '叶集区', label: '叶集区' },
+                            { value: '舒城县', label: '舒城县' },
+                            { value: '裕安区', label: '裕安区' },
+                            { value: '金安区', label: '金安区' },
+                            { value: '金寨县', label: '金寨县' },
+                            { value: '霍山县', label: '霍山县' },
+                            { value: '霍邱县', label: '霍邱县' }
+                        ]
+                    },{
+                        value: '合肥市',
+                        label: '合肥市',
+                        children: [
+                            { value: '包河区', label: '包河区' },
+                            { value: '巢湖市', label: '巢湖市' },
+                            { value: '庐江县', label: '庐江县' },
+                            { value: '庐阳区', label: '庐阳区' },
+                            { value: '瑶海区', label: '瑶海区' },
+                            { value: '肥东县', label: '肥东县' },
+                            { value: '肥西县', label: '肥西县' },
+                            { value: '蜀山区', label: '蜀山区' },
+                            { value: '长丰县', label: '长丰县' }
+                        ]
+                    },{
+                        value: '安庆市',
+                        label: '安庆市',
+                        children: [
+                            { value: '大观区', label: '大观区' },
+                            { value: '太湖县', label: '太湖县' },
+                            { value: '宜秀区', label: '宜秀区' },
+                            { value: '宿松县', label: '宿松县' },
+                            { value: '岳西县', label: '岳西县' },
+                            { value: '怀宁县', label: '怀宁县' },
+                            { value: '望江县', label: '望江县' },
+                            { value: '桐城市', label: '桐城市' },
+                            { value: '潜山县', label: '潜山县' },
+                            { value: '迎江区', label: '迎江区' }
+                        ]
+                    },{
+                        value: '宣城市',
+                        label: '宣城市',
+                        children: [
+                            { value: '宁国市', label: '宁国市' },
+                            { value: '宣州区', label: '宣州区' },
+                            { value: '旌德县', label: '旌德县' },
+                            { value: '泾县', label: '泾县' },
+                            { value: '绩溪县', label: '绩溪县' },
+                            { value: '郎溪县', label: '郎溪县' }
+                        ]
+                    },{
+                        value: '宿州市',
+                        label: '宿州市',
+                        children: [
+                            { value: '埇桥区', label: '埇桥区' },
+                            { value: '泗县', label: '泗县' },
+                            { value: '灵璧县', label: '灵璧县' },
+                            { value: '砀山县', label: '砀山县' },
+                            { value: '萧县', label: '萧县' }
+                        ]
+                    },{
+                        value: '池州市',
+                        label: '池州市',
+                        children: [
+                            { value: '东至县', label: '东至县' },
+                            { value: '石台县', label: '石台县' },
+                            { value: '贵池区', label: '贵池区' },
+                            { value: '青阳县', label: '青阳县' }
+                        ]
+                    },{
+                        value: '蚌埠市',
+                        label: '蚌埠市',
+                        children: [
+                            { value: '五河县', label: '五河县' },
+                            { value: '固镇县', label: '固镇县' },
+                            { value: '怀远县', label: '怀远县' },
+                            { value: '淮上区', label: '淮上区' },
+                            { value: '禹会区', label: '禹会区' },
+                            { value: '蚌山区', label: '蚌山区' },
+                            { value: '龙子湖区', label: '龙子湖区' }
+                        ]
+                    },{
+                        value: '铜陵市',
+                        label: '铜陵市',
+                        children: [
+                            { value: '义安区', label: '义安区' },
+                            { value: '枞阳县', label: '枞阳县' },
+                            { value: '郊区', label: '郊区' },
+                            { value: '铜官区', label: '铜官区' }
+                        ]
+                    },{
+                        value: '阜阳市',
+                        label: '阜阳市',
+                        children: [
+                            { value: '临泉县', label: '临泉县' },
+                            { value: '太和县', label: '太和县' },
+                            { value: '界首市', label: '界首市' },
+                            { value: '阜南县', label: '阜南县' },
+                            { value: '颍上县', label: '颍上县' },
+                            { value: '颍东区', label: '颍东区' },
+                            { value: '颍州区', label: '颍州区' },
+                            { value: '颍泉区', label: '颍泉区' }
+                        ]
+                    },{
+                        value: '马鞍山市',
+                        label: '马鞍山市',
+                        children: [
+                            { value: '博望区', label: '博望区' },
+                            { value: '含山县', label: '含山县' },
+                            { value: '和县', label: '和县' },
+                            { value: '当涂县', label: '当涂县' },
+                            { value: '花山区', label: '花山区' }
+                        ]
+                    },{
+                        value: '黄山市',
+                        label: '黄山市',
+                        children: [
+                            { value: '休宁县', label: '休宁县' },
+                            { value: '屯溪区', label: '屯溪区' },
+                            { value: '徽州区', label: '徽州区' },
+                            { value: '歙县', label: '歙县' },
+                            { value: '祁门县', label: '祁门县' },
+                            { value: '黄山区', label: '黄山区' },
+                            { value: '黟县', label: '黟县' }
+                        ]
+                    } ]
+                },{
+                    value: '内蒙古自治区',
+                    label: '内蒙古自治区',
+                    children: [{
+                        value: '乌兰察布市',
+                        label: '乌兰察布市',
+                        children: [
+                            { value: '丰镇市', label: '丰镇市' },
+                            { value: '兴和县', label: '兴和县' },
+                            { value: '凉城县', label: '凉城县' },
+                            { value: '化德县', label: '化德县' },
+                            { value: '卓资县', label: '卓资县' },
+                            { value: '商都县', label: '商都县' },
+                            { value: '四子王旗', label: '四子王旗' },
+                            { value: '察哈尔右翼中旗', label: '察哈尔右翼中旗' },
+                            { value: '察哈尔右翼前旗', label: '察哈尔右翼前旗' },
+                            { value: '察哈尔右翼后旗', label: '察哈尔右翼后旗' },
+                            { value: '集宁区', label: '集宁区' }
+                        ]
+                    } ]
+                }, {
+                    value: '黑龙江省',
+                    label: '黑龙江省',
+                    children: [{
+                        value: '七台河市',
+                        label: '七台河市',
+                        children: [
+                            {value: '勃利县', label: '勃利县'},
+                            {value: '桃山区', label: '桃山区'}
                         ]
                     }, {
-                        value: 21,
-                        label: '新疆维吾尔族自治区',
+                        value: '伊春市',
+                        label: '伊春市',
                         children: [
-                            { value: 22, label: '乌鲁木齐' },
-                            { value: 23, label: '克拉玛依' }
+                            {value: '上甘岭区', label: '上甘岭区'},
+                            {value: '五营区', label: '五营区'},
+                            {value: '伊春区', label: '伊春区'},
+                            {value: '南岔区', label: '南岔区'},
+                            {value: '友好区', label: '友好区'},
+                            {value: '嘉荫县', label: '嘉荫县'},
+                            {value: '新青区', label: '新青区'},
+                            {value: '汤旺河区', label: '汤旺河区'},
+                            {value: '红星区', label: '红星区'},
+                            {value: '美溪区', label: '美溪区'},
+                            {value: '翠峦区', label: '翠峦区'},
+                            {value: '西林区', label: '西林区'},
+                            {value: '金山屯区', label: '金山屯区'},
+                            {value: '铁力市', label: '铁力市'}
+                        ]
+                    }, {
+                        value: '佳木斯市',
+                        label: '佳木斯市',
+                        children: [
+                            {value: '东风区', label: '东风区'},
+                            {value: '前进区', label: '前进区'},
+                            {value: '同江市', label: '同江市'},
+                            {value: '向阳区', label: '向阳区'},
+                            {value: '富锦市', label: '富锦市'},
+                            {value: '抚远市', label: '抚远市'},
+                            {value: '桦南县', label: '桦南县'},
+                            {value: '桦川县', label: '桦川县'},
+                            {value: '汤原县', label: '汤原县'},
+                            {value: '郊区', label: '郊区'}
+                        ]
+                    }, {
+                        value: '双鸭山市',
+                        label: '双鸭山市',
+                        children: [
+                            {value: '友谊县', label: '友谊县'},
+                            {value: '四方台区', label: '四方台区'},
+                            {value: '宝山区', label: '宝山区'},
+                            {value: '宝清县', label: '宝清县'},
+                            {value: '尖山区', label: '尖山区'},
+                            {value: '岭东区', label: '岭东区'},
+                            {value: '集贤县', label: '集贤县'},
+                            {value: '饶河县', label: '饶河县'}
+                        ]
+                    }, {
+                        value: '哈尔滨市',
+                        label: '哈尔滨市',
+                        children: [
+                            {value: '五常市', label: '五常市'},
+                            {value: '依兰县', label: '依兰县'},
+                            {value: '南岗区', label: '南岗区'},
+                            {value: '双城区', label: '双城区'},
+                            {value: '呼兰区', label: '呼兰区'},
+                            {value: '宾县', label: '宾县'},
+                            {value: '尚志市', label: '尚志市'},
+                            {value: '巴彦县', label: '巴彦县'},
+                            {value: '平房区', label: '平房区'},
+                            {value: '延寿县', label: '延寿县'},
+                            {value: '方正县', label: '方正县'},
+                            {value: '木兰县', label: '木兰县'},
+                            {value: '松北区', label: '松北区'},
+                            {value: '通河县', label: '通河县'},
+                            {value: '道外区', label: '道外区'},
+                            {value: '道里区', label: '道里区'},
+                            {value: '阿城区', label: '阿城区'},
+                            {value: '香坊区', label: '香坊区'}
+                        ]
+                    }, {
+                        value: '大兴安岭地区',
+                        label: '大兴安岭地区',
+                        children: [
+                            {value: '呼玛县', label: '呼玛县'},
+                            {value: '塔河县', label: '塔河县'},
+                            {value: '漠河县', label: '漠河县'}
+                        ]
+                    }, {
+                        value: '大庆市',
+                        label: '大庆市',
+                        children: [
+                            {value: '大同区', label: '大同区'},
+                            {value: '杜尔伯特蒙古族自治县', label: '杜尔伯特蒙古族自治县'},
+                            {value: '林甸县', label: '林甸县'},
+                            {value: '红岗区', label: '红岗区'},
+                            {value: '肇州县', label: '肇州县'},
+                            {value: '肇源县', label: '肇源县'},
+                            {value: '萨尔图区', label: '萨尔图区'},
+                            {value: '让胡路区', label: '让胡路区'},
+                            {value: '龙凤区', label: '龙凤区'}
+                        ]
+                    }, {
+                        value: '牡丹江市',
+                        label: '牡丹江市',
+                        children: [
+                            {value: '东宁市', label: '东宁市'},
+                            {value: '东安区', label: '东安区'},
+                            {value: '宁安市', label: '宁安市'},
+                            {value: '林口县', label: '林口县'},
+                            {value: '海林市', label: '海林市'},
+                            {value: '爱民区', label: '爱民区'},
+                            {value: '穆棱市', label: '穆棱市'},
+                            {value: '绥芬河市', label: '绥芬河市'},
+                            {value: '西安区', label: '西安区'},
+                            {value: '阳明区', label: '阳明区'}
+                        ]
+                    }, {
+                        value: '绥化市',
+                        label: '绥化市',
+                        children: [
+                            {value: '兰西县', label: '兰西县'},
+                            {value: '北林区', label: '北林区'},
+                            {value: '安达市', label: '安达市'},
+                            {value: '庆安县', label: '庆安县'},
+                            {value: '明水县', label: '明水县'},
+                            {value: '望奎县', label: '望奎县'},
+                            {value: '海伦市', label: '海伦市'},
+                            {value: '绥棱县', label: '绥棱县'},
+                            {value: '肇东市', label: '肇东市'},
+                            {value: '青冈县', label: '青冈县'}
+                        ]
+                    }, {
+                        value: '鸡西市',
+                        label: '鸡西市',
+                        children: [
+                            {value: '城子河区', label: '城子河区'},
+                            {value: '密山市', label: '密山市'},
+                            {value: '恒山区', label: '恒山区'},
+                            {value: '梨树区', label: '梨树区'},
+                            {value: '滴道区', label: '滴道区'},
+                            {value: '虎林市', label: '虎林市'},
+                            {value: '鸡东县', label: '鸡东县'},
+                            {value: '鸡冠区', label: '鸡冠区'},
+                            {value: '麻山区', label: '麻山区'}
+                        ]
+                    }, {
+                        value: '鹤岗市',
+                        label: '鹤岗市',
+                        children: [
+                            {value: '东山区', label: '东山区'},
+                            {value: '兴安区', label: '兴安区'},
+                            {value: '兴山区', label: '兴山区'},
+                            {value: '南山区', label: '南山区'},
+                            {value: '向阳区', label: '向阳区'},
+                            {value: '工农区', label: '工农区'},
+                            {value: '绥滨县', label: '绥滨县'},
+                            {value: '萝北县', label: '萝北县'}
+                        ]
+                    }, {
+                        value: '黑河市',
+                        label: '黑河市',
+                        children: [
+                            {value: '五大连池市', label: '五大连池市'},
+                            {value: '北安市', label: '北安市'},
+                            {value: '嫩江县', label: '嫩江县'},
+                            {value: '吴县', label: '吴县'},
+                            {value: '爱辉区', label: '爱辉区'},
+                            {value: '逊克县', label: '逊克县'}
+                        ]
+                    }, {
+                        value: '齐齐哈尔市',
+                        label: '齐齐哈尔市',
+                        children: [
+                            {value: '依安县', label: '依安县'},
+                            {value: '克东县', label: '克东县'},
+                            {value: '克山县', label: '克山县'},
+                            {value: '富拉尔基区', label: '富拉尔基区'},
+                            {value: '富裕县', label: '富裕县'},
+                            {value: '昂昂溪区', label: '昂昂溪区'},
+                            {value: '梅里斯达斡尔族区', label: '梅里斯达斡尔族区'},
+                            {value: '泰来县', label: '泰来县'},
+                            {value: '甘南县', label: '甘南县'},
+                            {value: '碾子山区', label: '碾子山区'},
+                            {value: '讷河市', label: '讷河市'},
+                            {value: '铁锋区', label: '铁锋区'},
+                            {value: '龙江县', label: '龙江县'},
+                            {value: '龙沙区', label: '龙沙区'}
                         ]
                     }]
                 }]
@@ -897,8 +1604,11 @@
                 var _this = this;
                 var workplace = Array.from(_this.formDate.workplace);
                 workplace.forEach(item => {
-                    console.log(item.join(""));
+                    //console.log(item.length);
+                    _this.formDate.workplaces.push(item.join(""))
+                    //console.log(item[0]);
                 })
+                console.log(_this.formDate.workplaces);
                 _this.$axios({
                     method:'post',
                     url:'/api/excel/query',
@@ -914,6 +1624,7 @@
                 }).catch((error) =>{
                     console.log(error);       //请求失败返回的数据
                 })
+                _this.formDate.workplaces = []
                 //console.log(_this.formDate);
             },
             //重置

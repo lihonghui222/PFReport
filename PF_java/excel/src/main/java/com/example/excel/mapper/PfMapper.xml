@@ -46,8 +46,11 @@
                 grassrootsWorkUndergo like concat('%',#{grassrootsWorkUndergo},'%')
             </foreach>
         </if>
-        <if test="workplace != null and workplace !=''">
-            and workplace like concat('%',#{workplace},'%')
+        <if test="workplace != null and workplace.size() > 0">
+            and
+            <foreach collection="workplaces" item="workplace" open="(" separator="or" close=")">
+                workplace like concat('%',#{workplace},'%')
+            </foreach>
         </if>
         <if test="remarks != null and remarks !=''">
             and remarks like concat('%',#{remarks},'%')
@@ -82,8 +85,11 @@
                 grassrootsWorkUndergo like concat('%',#{grassrootsWorkUndergo},'%')
             </foreach>
         </if>
-        <if test="workplace != null and workplace !=''">
-            and workplace like concat('%',#{workplace},'%')
+        <if test="workplace != null and workplace.size() > 0">
+            and
+            <foreach collection="workplaces" item="workplace" open="(" separator="or" close=")">
+                workplace like concat('%',#{workplace},'%')
+            </foreach>
         </if>
         <if test="remarks != null and remarks !=''">
             and remarks like concat('%',#{remarks},'%')
@@ -121,8 +127,11 @@
                 grassrootsWorkUndergo like concat('%',#{grassrootsWorkUndergo},'%')
             </foreach>
         </if>
-        <if test="workplace != null and workplace !=''">
-            and workplace like concat('%',#{workplace},'%')
+        <if test="workplace != null and workplace.size() > 0">
+            and
+            <foreach collection="workplaces" item="workplace" open="(" separator="or" close=")">
+                workplace like concat('%',#{workplace},'%')
+            </foreach>
         </if>
         <if test="remarks != null and remarks !=''">
             and remarks like concat('%',#{remarks},'%')
