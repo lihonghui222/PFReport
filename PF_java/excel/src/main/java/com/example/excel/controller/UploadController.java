@@ -8,7 +8,6 @@ import org.apache.poi.ss.usermodel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -105,6 +104,7 @@ public class UploadController {
                     //此处执行插入sql
                     int a = pfService.insertExcelPf(pf);
                     insertNum = insertNum + a;
+                    logger.info("插入第"+insertNum+"条数据！");
                 }
                 pf = new PF();
                 pf.setDeptCode(cellValue);
@@ -192,6 +192,7 @@ public class UploadController {
             int a = pfService.insertExcelPf(pf);
             insertNum = insertNum + a;
             pf = new PF();
+            logger.info("插入第"+insertNum+"条数据！");
         }
     }
 

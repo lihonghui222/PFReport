@@ -28,7 +28,7 @@
                 </el-form-item>
                 <el-form-item label="工作地点：" prop="workplace">
                     <!--<el-input v-model="formDate.workplace" placeholder="请输入工作地点" clearable style="width:250px"></el-input>-->
-                    <el-cascader :options="options" :props="props" v-model="formDate.workplace" collapse-tags clearable placeholder="请选择工作地点" style="width:250px" ></el-cascader>
+                    <el-cascader :options="options" :props="props" ref="workRef" collapse-tags clearable placeholder="请选择工作地点" style="width:250px"></el-cascader>
                 </el-form-item>
                 <el-form-item label="备注：" prop="remarks">
                     <el-input v-model="formDate.remarks" placeholder="请输入备注" clearable style="width:250px"></el-input>
@@ -107,7 +107,6 @@
                     educations:[],
                     grassrootsWorkYearss:[],
                     grassrootsWorkUndergos:[],
-                    workplace:[],
                     workplaces:[],
                     remarks:'',
                     numberIndex: 0,//分页查询起始下标
@@ -1602,13 +1601,17 @@
             //数据查询事件
             onSubmit() {
                 var _this = this;
-                var workplace = Array.from(_this.formDate.workplace);
-                workplace.forEach(item => {
-                    //console.log(item.length);
-                    _this.formDate.workplaces.push(item.join(""))
-                    //console.log(item[0]);
-                })
-                console.log(_this.formDate.workplaces);
+                if(_this.$refs.workRef){
+                    var workplace = Array.from(_this.$refs.workRef.getCheckedNodes());
+                    workplace.forEach(item => {
+                        //当父节点存在且父节点未被选中的情况下，将参数拼接
+                        if(!(item.parent!=null && item.parent.checked==true )){
+                            var paths = Array.from(item.path);
+                            _this.formDate.workplaces.push(paths.join(""));
+                        }
+                    })
+                }
+
                 _this.$axios({
                     method:'post',
                     url:'/api/excel/query',

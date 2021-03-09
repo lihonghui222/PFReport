@@ -4,7 +4,7 @@ module.exports = {
     devServer: {
         open: false,
         host: 'localhost',
-        port: 8081,
+        port: 8082,
         https: false,
         //以上的ip和端口是我们本机的;下面为需要跨域的
         proxy: {  //配置跨域
