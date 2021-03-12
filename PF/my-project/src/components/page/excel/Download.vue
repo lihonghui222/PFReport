@@ -31,7 +31,12 @@
                     <el-cascader :options="options" :props="props" ref="workRef" collapse-tags clearable placeholder="请选择工作地点" style="width:250px"></el-cascader>
                 </el-form-item>
                 <el-form-item label="备注：" prop="remarks">
-                    <el-input v-model="formDate.remarks" placeholder="请输入备注" clearable style="width:250px"></el-input>
+                    <!--<el-input v-model="formDate.remarks" placeholder="请输入备注" clearable style="width:250px"></el-input>-->
+                    <el-tooltip class="item" effect="dark" content="此处填入数据为备注中不需要存在的信息" placement="top">
+                        <el-select v-model="formDate.remarkss" multiple collapse-tags filterable allow-create clearable placeholder="请选择备注" style="width:250px">
+                            <el-option v-for="item in remarkss" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                        </el-select>
+                    </el-tooltip>
                 </el-form-item>
                 <el-row>
                     <el-form-item>
@@ -83,7 +88,7 @@
                 <el-table-column prop="recruitmentNumber" label="招考人数" width="100"></el-table-column>
                 <el-table-column prop="positionSynopsis" label="职位简介" width="400"></el-table-column>
                 <el-table-column prop="deptWebsite" label="部门网站" width="180"></el-table-column>
-                <el-table-column prop="major" label="专业"></el-table-column>
+                <el-table-column prop="major" label="专业" ></el-table-column>
             </el-table>
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
                     :page-sizes="pageSizes" :page-size="PageSize" layout="total, sizes, prev, pager, next, jumper"
@@ -108,7 +113,7 @@
                     grassrootsWorkYearss:[],
                     grassrootsWorkUndergos:[],
                     workplaces:[],
-                    remarks:'',
+                    remarks:[],
                     numberIndex: 0,//分页查询起始下标
                     nowPageSize:10//分页查询每页数据条数
                 },
@@ -276,6 +281,43 @@
                 },{
                     value: '无限制',
                     label: '无限制'
+                }],
+                remarkss: [{
+                    value: '男',
+                    label: '男'
+                },{
+                    value: '女',
+                    label: '女'
+                },{
+                    value: '毕业生',
+                    label: '毕业生'
+                },{
+                    value: '残疾',
+                    label: '残疾'
+                },{
+                    value: '加班',
+                    label: '加班'
+                },{
+                    value: '出差',
+                    label: '出差'
+                },{
+                    value: '夜班',
+                    label: '夜班'
+                },{
+                    value: '英语四级',
+                    label: '英语四级'
+                },{
+                    value: '英语六级',
+                    label: '英语六级'
+                },{
+                    value: '2年',
+                    label: '2年'
+                },{
+                    value: '户籍人员',
+                    label: '户籍人员'
+                },{
+                    value: '户口',
+                    label: '户口'
                 }],
                 props: { multiple: true},
                 options: [{
@@ -1601,6 +1643,7 @@
             //数据查询事件
             onSubmit() {
                 var _this = this;
+                //工作地点的筛选
                 if(_this.$refs.workRef){
                     var workplace = Array.from(_this.$refs.workRef.getCheckedNodes());
                     workplace.forEach(item => {
@@ -1640,6 +1683,17 @@
                 this.onSubmit()
             },
             onDownload(){
+                //工作地点的筛选
+                if(this.$refs.workRef){
+                    var workplace = Array.from(this.$refs.workRef.getCheckedNodes());
+                    workplace.forEach(item => {
+                        //当父节点存在且父节点未被选中的情况下，将参数拼接
+                        if(!(item.parent!=null && item.parent.checked==true )){
+                            var paths = Array.from(item.path);
+                            this.formDate.workplaces.push(paths.join(""));
+                        }
+                    })
+                }
                 this.$axios({
                     method:'post',
                     url:'/api/excel/download',
@@ -1661,6 +1715,7 @@
                 }).catch((error) =>{
                     console.log(error);       //请求失败返回的数据
                 })
+                this.formDate.workplaces = []
             }
         },
         created(){

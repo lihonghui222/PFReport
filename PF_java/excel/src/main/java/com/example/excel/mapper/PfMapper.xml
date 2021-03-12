@@ -52,8 +52,11 @@
                 workplace like concat('%',#{workplace},'%')
             </foreach>
         </if>
-        <if test="remarks != null and remarks !=''">
-            and remarks like concat('%',#{remarks},'%')
+        <if test="remarkss != null and remarkss.size() > 0">
+            and
+            <foreach collection="remarkss" item="remarks" open="(" separator="and" close=")">
+                remarks not like concat('%',#{remarks},'%')
+            </foreach>
         </if>
         limit #{numberIndex},#{nowPageSize}
     </select>
@@ -91,8 +94,11 @@
                 workplace like concat('%',#{workplace},'%')
             </foreach>
         </if>
-        <if test="remarks != null and remarks !=''">
-            and remarks like concat('%',#{remarks},'%')
+        <if test="remarkss != null and remarkss.size() > 0">
+            and
+            <foreach collection="remarkss" item="remarks" open="(" separator="and" close=")">
+                remarks not like concat('%',#{remarks},'%')
+            </foreach>
         </if>
     </select>
 
@@ -133,8 +139,11 @@
                 workplace like concat('%',#{workplace},'%')
             </foreach>
         </if>
-        <if test="remarks != null and remarks !=''">
-            and remarks like concat('%',#{remarks},'%')
+        <if test="remarkss != null and remarkss.size() > 0">
+            and
+            <foreach collection="remarkss" item="remarks" open="(" separator="and" close=")">
+                remarks not like concat('%',#{remarks},'%')
+            </foreach>
         </if>
     </select>
 </mapper>
