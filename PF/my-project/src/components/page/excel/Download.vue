@@ -43,7 +43,12 @@
                         <el-button type="primary" @click="onQuery">查询</el-button>
                         <el-button @click="resetForm('formDate')">重置</el-button>
                     </el-form-item>
-                    <el-button type="primary" @click="onDownload">下载<i class="el-icon-download el-icon--right"></i></el-button>
+                    <template>
+                        <el-popconfirm confirm-button-text='下载' cancel-button-text='不用了' icon="el-icon-info" icon-color="red"
+                                title="确定下载吗？下载可能需要一些时间" @onConfirm="onDownload">
+                            <el-button slot="reference" type="primary">下载<i class="el-icon-download el-icon--right"></i></el-button>
+                        </el-popconfirm>
+                    </template>
                 </el-row>
             </el-form>
 
@@ -113,7 +118,7 @@
                     grassrootsWorkYearss:[],
                     grassrootsWorkUndergos:[],
                     workplaces:[],
-                    remarks:[],
+                    remarkss:[],
                     numberIndex: 0,//分页查询起始下标
                     nowPageSize:10//分页查询每页数据条数
                 },
@@ -1680,9 +1685,17 @@
                 this.formDate.educations = []
                 this.formDate.grassrootsWorkYearss = []
                 this.formDate.grassrootsWorkUndergos = []
+                this.$refs.workRef.$refs.panel.clearCheckedNodes();
+                this.formDate.remarkss = []
                 this.onSubmit()
             },
             onDownload(){
+                const loading = this.$loading({
+                    lock: true,
+                    text: '文件下载中',
+                    spinner: 'el-icon-loading',
+                    background: 'rgba(0, 0, 0, 0.7)'
+                });
                 //工作地点的筛选
                 if(this.$refs.workRef){
                     var workplace = Array.from(this.$refs.workRef.getCheckedNodes());
@@ -1712,6 +1725,14 @@
                     link.download = '公务员职位表' // 自定义文件名
                     link.click() // 下载文件
                     URL.revokeObjectURL(objectUrl); // 释放内存
+
+                    //关闭加载图标
+                    loading.close();
+                    this.$message({
+                        showClose: true,
+                        message: '下载成功！',
+                        type: 'success'
+                    });
                 }).catch((error) =>{
                     console.log(error);       //请求失败返回的数据
                 })
