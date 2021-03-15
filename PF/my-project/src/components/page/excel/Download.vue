@@ -53,7 +53,7 @@
             </el-form>
 
             <!--<el-table :data="tableData.slice((currentPage-1)*PageSize,currentPage*PageSize)" height="540" border style="width: 100%">-->
-            <el-table :data="tableData" height="540" border style="width: 100%">
+            <el-table :data="tableData" height="540" border style="width: 100%" :row-class-name="tableRowClassName">
                 <el-table-column type="expand">
                     <template slot-scope="props">
                         <el-form label-position="left" inline class="demo-table-expand">
@@ -1625,6 +1625,16 @@
             }
         },
         methods: {
+            //对数据展示列表设置不同的背景色
+            tableRowClassName({row, rowIndex}) {
+                row;
+                if (rowIndex%4 === 1) {
+                    return 'warning-row';
+                } else if (rowIndex%2 === 1) {
+                    return 'success-row';
+                }
+                return '';
+            },
             //修改每页显示条数时触发事件
             handleSizeChange(val) {
                 this.PageSize=val// 改变每页显示的条数
@@ -1770,4 +1780,12 @@
     /*.demo-table-expand .el-form-item span{
         color:red;
     }*/
+
+    .el-table .warning-row {
+        background: oldlace;
+    }
+
+    .el-table .success-row {
+        background: #f0f9eb;
+    }
 </style>
