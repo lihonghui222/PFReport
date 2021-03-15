@@ -5,12 +5,13 @@ import com.example.excel.model.PF;
 import com.example.excel.services.PfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
-
 @Service    //必须声明的，不然系统不知道此为逻辑层
+@Transactional
 public class PfServiceImpl implements PfService {
     @Autowired(required = false)
     private PfMapper pfMapper;

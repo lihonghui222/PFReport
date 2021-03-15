@@ -8,6 +8,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,17 +27,20 @@ public class UploadController {
 
     //@CrossOrigin(origins = "*",maxAge = 3600)//本行代码解决跨域问题
     @PostMapping("/upload")
+    @Transactional
     public JSONObject fileUploads(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IOException {
         //插入数据前先删除数据
         int deleteNum = pfService.deleteAllExcelPf();
         logger.info("删除数据成功！");
-        //文件处理存储入库
-        readExcel(file.getInputStream());
-        //String fileName = file.getOriginalFilename();// 获取上传的文件名称
+        pf = new PF();
         insertNum = 0;
+        //文件处理存储入库
+        int flag= readExcel(file.getInputStream());
+        //String fileName = file.getOriginalFilename();// 获取上传的文件名称
 
         JSONObject result = new JSONObject();
-        result.put("returnMessage", "上传成功！");
+        //result.put("returnMessage", "上传成功！");
+        result.put("returnCode",flag);
         return result;
     }
 
@@ -44,7 +48,7 @@ public class UploadController {
      * 读取.xlsx格式excel文件内容
      * @param inputs
      */
-    public void readExcel(InputStream inputs){
+    public int readExcel(InputStream inputs){
         try {
             // 1. 打开文件（流读取excel文件）
             //FileInputStream inputs = new FileInputStream(file_path);
@@ -52,18 +56,27 @@ public class UploadController {
             Workbook wb = WorkbookFactory.create(inputs);
             // 3. 获取sheet（表单）
             int sheetNumber = wb.getNumberOfSheets();//页签数量
+            if(sheetNumber < 1){//若页签数量不足0，则此上传模板有误
+                return 1;
+            }
             for (int i=0 ; i<sheetNumber ; i++){
                 Sheet sh = wb.getSheetAt(i); // 通过索引获取表单
                 // 4. 获取最大行号: 索引(0开始)
                 int lastRowNum = sh.getLastRowNum();
-                //logger.info("最大行数："+lastRowNum);
+                if (lastRowNum < 1){//当数据不足两行时，代表数据异常
+                    return 1;
+                }
+                //logger.info("最大行数："+(lastRowNum+1));
                 // 5. 循环所有的行（除去前两行标题）
                 for(int j=2;j<=lastRowNum;j++) {
                     // 5.1 获取当前行
                     Row row = sh.getRow(j);
                     // 5.2  获取当前行最大列号: 长度
                     int lastCellNum = row.getLastCellNum();
-                    //logger.info("最大列号："+lastCellNum);
+                    /*if(lastCellNum != 27){//若最大的列数不为28【0-27】时，则表示文件不满足格式
+                        return 1;
+                    }*/
+                    //logger.info("最大列号："+(lastCellNum+1));
                     // 6. 遍历每行所有的单元格
                     for(int z=0;z<lastCellNum;z++) {
                         // 6.1 获取cell(单元格)
@@ -79,6 +92,7 @@ public class UploadController {
             }
         } catch(Exception e) {
             e.printStackTrace();
+            return 1;
         }finally {
             try {
                 logger.info("成功插入数据条数为："+insertNum);
@@ -88,6 +102,7 @@ public class UploadController {
                 e.printStackTrace();
             }
         }
+        return 0;
     }
 
     /**

@@ -19,8 +19,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/excel")
 public class DownloadController {
-    //private final static String excelmodel = "D:/wenjian/pf1.xls";
-
     @Autowired
     private PfService pfService;
 
@@ -37,7 +35,6 @@ public class DownloadController {
      * @return
      */
     public static byte[] excelExport(List list) {
-        //String excelmodel = new ClassPathResource("model/pf.xls").getInputStream();
         byte[] b = null;
         try{
             HSSFWorkbook wb = new HSSFWorkbook(new ClassPathResource("model/pf.xls").getInputStream());

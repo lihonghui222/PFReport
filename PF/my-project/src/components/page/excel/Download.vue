@@ -1690,53 +1690,57 @@
                 this.onSubmit()
             },
             onDownload(){
-                const loading = this.$loading({
-                    lock: true,
-                    text: '文件下载中',
-                    spinner: 'el-icon-loading',
-                    background: 'rgba(0, 0, 0, 0.7)'
-                });
-                //工作地点的筛选
-                if(this.$refs.workRef){
-                    var workplace = Array.from(this.$refs.workRef.getCheckedNodes());
-                    workplace.forEach(item => {
-                        //当父节点存在且父节点未被选中的情况下，将参数拼接
-                        if(!(item.parent!=null && item.parent.checked==true )){
-                            var paths = Array.from(item.path);
-                            this.formDate.workplaces.push(paths.join(""));
-                        }
-                    })
-                }
-                this.$axios({
-                    method:'post',
-                    url:'/api/excel/download',
-                    data:{
-                        pf:this.formDate
-                    },
-                    responseType:'blob'
-                }).then((response) =>{          //这里使用了ES6的语法
-                    //console.log(response)       //请求成功返回的数据
-                    // 利用a标签自定义下载文件名
-                    const link = document.createElement('a')
-                    // 创建Blob对象，设置文件类型
-                    let blob = new Blob([response.data], {type: "application/vnd.ms-excel"})
-                    let objectUrl = URL.createObjectURL(blob) // 创建URL
-                    link.href = objectUrl
-                    link.download = '公务员职位表' // 自定义文件名
-                    link.click() // 下载文件
-                    URL.revokeObjectURL(objectUrl); // 释放内存
-
-                    //关闭加载图标
-                    loading.close();
-                    this.$message({
-                        showClose: true,
-                        message: '下载成功！',
-                        type: 'success'
+                if(this.tableData.length != 0) {
+                    const loading = this.$loading({
+                        lock: true,
+                        text: '文件下载中',
+                        spinner: 'el-icon-loading',
+                        background: 'rgba(0, 0, 0, 0.7)'
                     });
-                }).catch((error) =>{
-                    console.log(error);       //请求失败返回的数据
-                })
-                this.formDate.workplaces = []
+                    //工作地点的筛选
+                    if (this.$refs.workRef) {
+                        var workplace = Array.from(this.$refs.workRef.getCheckedNodes());
+                        workplace.forEach(item => {
+                            //当父节点存在且父节点未被选中的情况下，将参数拼接
+                            if (!(item.parent != null && item.parent.checked == true)) {
+                                var paths = Array.from(item.path);
+                                this.formDate.workplaces.push(paths.join(""));
+                            }
+                        })
+                    }
+                    this.$axios({
+                        method: 'post',
+                        url: '/api/excel/download',
+                        data: {
+                            pf: this.formDate
+                        },
+                        responseType: 'blob'
+                    }).then((response) => {          //这里使用了ES6的语法
+                        //console.log(response)       //请求成功返回的数据
+                        // 利用a标签自定义下载文件名
+                        const link = document.createElement('a')
+                        // 创建Blob对象，设置文件类型
+                        let blob = new Blob([response.data], {type: "application/vnd.ms-excel"})
+                        let objectUrl = URL.createObjectURL(blob) // 创建URL
+                        link.href = objectUrl
+                        link.download = '公务员职位表' // 自定义文件名
+                        link.click() // 下载文件
+                        URL.revokeObjectURL(objectUrl); // 释放内存
+
+                        //关闭加载图标
+                        loading.close();
+                        this.$message({
+                            showClose: true,
+                            message: '下载成功！',
+                            type: 'success'
+                        });
+                    }).catch((error) => {
+                        console.log(error);       //请求失败返回的数据
+                    })
+                    this.formDate.workplaces = []
+                }else{
+                    this.$message.error("无数据不予下载！");
+                }
             }
         },
         created(){
